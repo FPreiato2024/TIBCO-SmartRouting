@@ -1,0 +1,73 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "SmartRouting",
+    "description" : "SmartRouting service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/smartrouting/{sourceSystem}/{documentType}/v1" : {
+      "post" : {
+        "summary" : "postSmartRouting",
+        "description" : "postSmartRouting",
+        "operationId" : "post-smartrouting-v1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/messageBody"
+          },
+          "required" : true
+        }, {
+          "name" : "documentType",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "sourceSystem",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "fireAndForget",
+          "in" : "query",
+          "description" : "",
+          "type" : "boolean",
+          "required" : false
+        }, {
+          "name" : "targetSystem",
+          "in" : "query",
+          "description" : "",
+          "type" : "string",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a string to be returned",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "messageBody" : {
+      "type" : "object",
+      "properties" : {
+        "messageBody" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

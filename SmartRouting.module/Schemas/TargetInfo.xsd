@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/TargetInfo" xmlns:tns="http://www.example.org/TargetInfo" elementFormDefault="qualified">
+
+
+<complexType name="TargetType">
+    <sequence>
+      <element maxOccurs="1" minOccurs="0" name="SystemName" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Hostname" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Port" type="int"/>
+      <element maxOccurs="1" minOccurs="0" name="Protocol" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Endpoint" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="JoltSpecification" type="string"/>      
+      <element maxOccurs="1" minOccurs="0" name="Username" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Password" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Timeout" type="int"/>
+      <element maxOccurs="1" minOccurs="0" name="Retry" type="int"/>
+      <element maxOccurs="1" minOccurs="0" name="Payload" type="string"/>   
+    </sequence>
+  </complexType>
+
+  <element name="Target" type="tns:TargetType"/>
+
+  <complexType name="TargetsType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" ref="tns:Target"/>
+    </sequence>
+  </complexType>
+  <element name="Targets" type="tns:TargetsType"/>
+
+</schema>

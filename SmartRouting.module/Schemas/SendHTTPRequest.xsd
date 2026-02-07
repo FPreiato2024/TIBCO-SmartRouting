@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/SendHTTPRequest" xmlns:tns="http://www.example.org/SendHTTPRequest" elementFormDefault="qualified">
+
+<element name="HTTPSendInput" type="tns:HTTPSendInputType"/>
+	
+	<complexType name="HTTPSendInputType">
+		<sequence>
+			<element maxOccurs="1" minOccurs="0" name="Host" type="string"></element>	
+			<element maxOccurs="1" minOccurs="0" name="Port" type="int"></element>
+			<element maxOccurs="1" minOccurs="1" name="Method" type="string"></element>
+			<element maxOccurs="1" minOccurs="1" name="RequestURI" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="PostData" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="QueryString" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="Timeout" type="int"></element>
+			<element maxOccurs="1" minOccurs="0" name="Retry" type="int"></element>
+			<element maxOccurs="1" minOccurs="0" name="Headers" type="tns:HeadersType"></element>
+			<element maxOccurs="1" minOccurs="0" name="DynamicHeaders" type="tns:DynamicHeaderType"></element>			
+		</sequence>
+	</complexType>
+	
+	<complexType name="DynamicHeaderType">
+		<sequence>
+			<element name="Header" type="tns:HeaderType" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="HeadersType">
+		<sequence>
+			<element maxOccurs="1" minOccurs="0" name="Accept" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="AcceptCharset" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="AcceptEncoding" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="ContentType" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="Cookie" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="Pragma" type="string"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="HeaderType">
+		<sequence>
+			<element maxOccurs="1" minOccurs="0" name="HeaderName" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="HeaderValue" type="string"></element>
+		</sequence>	
+	</complexType>
+	
+	
+	<element name="HTTPSendOuput" type="tns:HTTPSendOutputType"/>
+	
+	<complexType name="HTTPSendOutputType">
+		<sequence>
+    		<element maxOccurs="1" minOccurs="0" name="httpStatusCode" type="int"></element>
+			<element maxOccurs="1" minOccurs="0" name="asciiContent" type="string"></element>
+			<element maxOccurs="1" minOccurs="0" name="BinaryContent" type="base64Binary"></element>
+		</sequence>
+	</complexType>
+
+
+</schema>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:property="http://ns.tibco.com/bw/property" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_aJGz4P0iEfCawd0JmquWnw" targetNamespace="http://tns.tibco.com/bw/composite/SmartRouting.module" name="SmartRouting.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_YVMCUf3qEfCvw5UuO_mvVQ" name="smartrouting-v1" promote="ComponentIngestion/smartrouting-v1">
+    <sca:interface.wsdl xmi:id="_YVMCVf3qEfCvw5UuO_mvVQ" interface="http://xmlns.example.com/20260130123659PLT#wsdl.interface(smartrouting-v11)" scaext:wsdlLocation="../Processes/main/Ingestion.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_YVNQcP3qEfCvw5UuO_mvVQ" name="RestService" path="/smartrouting/{sourceSystem}/{documentType}/v1" docBasePath="http://localhost:7777/SmartRouting.module" docResourcePath="SmartRouting" basePath="/" connector="HTTP.HTTPDispatcher" opaqueData="true" technologyVersion="2.0" implementation="Service Descriptors/main.Ingestion-SmartRouting.json">
+      <operation xmi:id="_YVN3gP3qEfCvw5UuO_mvVQ" operationName="post" nickname="post-smartrouting-v1" httpMethod="POST" notes="postSmartRouting" responseStyle="element" outputPartName="item">
+        <parameters xmi:id="_28TVkP3qEfCvw5UuO_mvVQ">
+          <parameterMapping xmi:id="_28TVkf3qEfCvw5UuO_mvVQ" parameterName="targetSystem" parameterType="Query" dataType="string" description=""/>
+          <parameterMapping xmi:id="_nK5OEP61EfCw0OiVcYlxOA" parameterName="fireAndForget" parameterType="Query" dataType="boolean" description=""/>
+        </parameters>
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_YVwqEP3qEfCvw5UuO_mvVQ">
+        <parameterMapping xmi:id="_YVwqEf3qEfCvw5UuO_mvVQ" parameterName="sourceSystem" parameterType="Path" required="true" description=""/>
+        <parameterMapping xmi:id="_YVwqEv3qEfCvw5UuO_mvVQ" parameterName="documentType" parameterType="Path" required="true" description=""/>
+      </parameters>
+      <advancedConfig xmi:id="_YVNQcf3qEfCvw5UuO_mvVQ" blockingQueueSize="8192"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_YVN3gf3qEfCvw5UuO_mvVQ" bindingName="RestService"/>
+  </sca:service>
+  <sca:property xmi:id="_cgjMYP0iEfCawd0JmquWnw" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_cgs9YP0iEfCawd0JmquWnw" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_cgyc8P0iEfCawd0JmquWnw" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_cg1gQP0iEfCawd0JmquWnw" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_cg4jkP0iEfCawd0JmquWnw" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_cg4jkf0iEfCawd0JmquWnw" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
+  <sca:property xmi:id="_cg7m4P0iEfCawd0JmquWnw" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_lyr8oP7DEfCw0OiVcYlxOA" name="/Resources/JMS/providerURL" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_oSb8kP7DEfCw0OiVcYlxOA" name="/Resources/JMS/username" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_oXQLIP7DEfCw0OiVcYlxOA" name="/Resources/JMS/password" type="property:password" scaext:simpleValue="#!y5sVvLZTpqQthGR2ueVjEA==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_QE7aQP7EEfCw0OiVcYlxOA" name="/Resources/JMS/queue" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_0Jo0EP7DEfCw0OiVcYlxOA" name="/Resources/JDBC/driver" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_4-wI4P7DEfCw0OiVcYlxOA" name="/Resources/JDBC/URL" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="__IV9UP7DEfCw0OiVcYlxOA" name="/Resources/JDBC/username" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="__M0NoP7DEfCw0OiVcYlxOA" name="/Resources/JDBC/password" type="property:password" scaext:simpleValue="#!t2WfBMn+RuOdqRncHHtLmw==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_IZib4P7EEfCw0OiVcYlxOA" name="/Resources/HTTP/Connector/host" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_MVrhUP7EEfCw0OiVcYlxOA" name="/Resources/HTTP/Connector/port" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_EdRsQAAlEfGdh42Wo1KODg" name="/Processes/SendHTTPRequest/WaitBeforeRetry" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="__UzF0P3PEfCvw5UuO_mvVQ" name="ComponentIngestion" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="__UzF0f3PEfCvw5UuO_mvVQ" processName="main.Ingestion"/>
+    <sca:service xmi:id="_YVLbQP3qEfCvw5UuO_mvVQ" name="smartrouting-v1">
+      <sca:interface.wsdl xmi:id="_YVMCUP3qEfCvw5UuO_mvVQ" interface="http://xmlns.example.com/20260130123659PLT#wsdl.interface(smartrouting-v11)"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_4vohEP6-EfCw0OiVcYlxOA" name="ComponentAsyncIngestion" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_4vohEf6-EfCw0OiVcYlxOA" processName="main.AsyncDispatcher"/>
+  </sca:component>
+</sca:composite>

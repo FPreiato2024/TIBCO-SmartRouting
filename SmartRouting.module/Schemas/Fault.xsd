@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Fault" xmlns:tns="http://www.example.org/Fault" elementFormDefault="qualified">
+
+<complexType name="FaultType">
+    <sequence>
+      <element maxOccurs="1" minOccurs="0" name="errorCode" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="errorMessage" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="Fault" type="tns:FaultType"/>
+
+</schema>
