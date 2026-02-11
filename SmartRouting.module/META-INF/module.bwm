@@ -8,6 +8,8 @@
           <parameterMapping xmi:id="_28TVkf3qEfCvw5UuO_mvVQ" parameterName="targetSystem" parameterType="Query" dataType="string" description=""/>
           <parameterMapping xmi:id="_nK5OEP61EfCw0OiVcYlxOA" parameterName="fireAndForget" parameterType="Query" dataType="boolean" description=""/>
         </parameters>
+        <responseStatus xmi:id="_T30xsAdXEfGph6EA5ZeeYA" statusCode="500" reasonPhrase="Internal Server Error" dataType="string"/>
+        <responseStatus xmi:id="_UfPXAAdXEfGph6EA5ZeeYA" statusCode="200" reasonPhrase="OK" dataType="string"/>
         <clientFormat>json</clientFormat>
         <clientRequestFormat>json</clientRequestFormat>
       </operation>

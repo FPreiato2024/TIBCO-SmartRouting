@@ -23,6 +23,7 @@
     <tibex:VariableDescriptor type="MemorySaving">
         <task name="flow">
             <endingVariables>
+                <variable>Start</variable>
                 <variable>JDBCQuery</variable>
             </endingVariables>
         </task>
@@ -44,7 +45,6 @@
         <task name="TransformJSONinCDM">
             <endingVariables>
                 <variable>TransformJSONinCDM-input</variable>
-                <variable>Start</variable>
             </endingVariables>
         </task>
         <task name="StartLog">
@@ -495,21 +495,6 @@
             </xs:complexType>
             <xs:element name="ActivityInput" type="tns:LogParametersType"/>
         </xs:schema>
-        <schema
-            targetNamespace="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions"
-            xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions">
-            <element name="DefaultFault">
-                <complexType>
-                    <sequence>
-                        <element maxOccurs="1" minOccurs="0"
-                            name="message" type="string"/>
-                        <element maxOccurs="1" minOccurs="0"
-                            name="msgCode" type="string"/>
-                    </sequence>
-                </complexType>
-            </element>
-        </schema>
     </tibex:Types>
     <tibex:ProcessInfo callable="true" createdBy="FedericoPreiato"
         createdOn="Fri Jan 30 12:45:50 CET 2026" description=""
@@ -1261,9 +1246,8 @@
     </bpws:extensions>
     <bpws:scope name="scope">
         <bpws:faultHandlers>
-            <bpws:catch faultElement="ns8:DefaultFault"
-                faultName="ns8:DefaultFault"
-                faultVariable="DefaultFault" tibex:xpdlId="64644b38-b0da-4148-a076-93c095f63fce">
+            <bpws:catch faultElement="ns9:Fault" faultName="ns9:Fault"
+                faultVariable="Fault" tibex:xpdlId="64644b38-b0da-4148-a076-93c095f63fce">
                 <bpws:scope name="scope1">
                     <bpws:flow name="flow1">
                         <bpws:links/>
@@ -1383,9 +1367,9 @@
                         <bpws:source linkName="JDBCQueryToThrow">
                             <tibex:DesignExpression>
                                 <tibex:expression
-                                    expression="$JDBCQuery/Record[1]/Enabled = false()" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                                    expression="$JDBCQuery/Record[1]/Enabled = false() or not(exists($JDBCQuery/Record[1]))" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
                             </tibex:DesignExpression>
-                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[$JDBCQuery/Record[1]/Enabled = false()]]></bpws:transitionCondition>
+                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[$JDBCQuery/Record[1]/Enabled = false() or not(exists($JDBCQuery/Record[1]))]]></bpws:transitionCondition>
                         </bpws:source>
                         <bpws:source linkName="JDBCQueryToTransformJSONinCDM"/>
                     </bpws:sources>
@@ -1438,7 +1422,7 @@
                 faultVariable="Throw-input" name="Throw" tibex:xpdlId="4463884a-474e-4046-bbba-e25b82ee4378">
                 <tibex:inputBindings>
                     <tibex:partBinding
-                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.example.org/Fault&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JDBCQuery&quot;/>&lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&lt;tns5:Fault>&lt;tns5:errorCode>&lt;xsl:value-of select=&quot;500&quot;/>&lt;/tns5:errorCode>&lt;tns5:errorMessage>&lt;xsl:value-of select=&quot;concat($JDBCQuery/Record[1]/SystemName, &amp;quot; not enabled for sending &amp;quot;, $JDBCQuery/Record[1]/DocumentType)&quot;/>&lt;/tns5:errorMessage>&lt;/tns5:Fault>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.example.org/Fault&quot; xmlns:tns1=&quot;http://tns.tibco.com/bw/json/1769773237084&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JDBCQuery&quot;/>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&lt;tns5:Fault>&lt;tns5:errorCode>&lt;xsl:value-of select=&quot;500&quot;/>&lt;/tns5:errorCode>&lt;xsl:choose>&lt;xsl:when test=&quot;$JDBCQuery/Record[1]/Enabled = false()&quot;>&lt;tns5:errorMessage>&lt;xsl:value-of select=&quot;concat($JDBCQuery/Record[1]/SystemName, &amp;quot; not enabled for sending &amp;quot;, $JDBCQuery/Record[1]/DocumentType)&quot;/>&lt;/tns5:errorMessage>&lt;/xsl:when>&lt;xsl:when test=&quot;not(exists($JDBCQuery/Record[1]))&quot;>&lt;tns5:errorMessage>&lt;xsl:value-of select=&quot;concat(&amp;quot;No record found for source system: &amp;quot;, $Start/tns1:sourceName)&quot;/>&lt;/tns5:errorMessage>&lt;/xsl:when>&lt;xsl:otherwise>&lt;tns5:errorMessage>&lt;xsl:value-of select=&quot;&amp;quot;Error in retrieving information aboutn source system&amp;quot;&quot;/>&lt;/tns5:errorMessage>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/tns5:Fault>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                 </tibex:inputBindings>
                 <bpws:targets>
                     <bpws:target linkName="LogToThrow"/>

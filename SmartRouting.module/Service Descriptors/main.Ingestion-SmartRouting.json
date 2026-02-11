@@ -50,8 +50,8 @@
           "required" : false
         } ],
         "responses" : {
-          "200" : {
-            "description" : "a string to be returned",
+          "500" : {
+            "description" : "Internal Server Error",
             "schema" : {
               "type" : "string"
             }
