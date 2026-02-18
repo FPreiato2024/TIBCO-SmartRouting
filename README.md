@@ -121,7 +121,6 @@ It is related to the Documents table, since each SystemName in the Documents tab
 - Decouples systems via Common Data Model  
 - Supports scalable and secure integration patterns  
 
----
 
 ## Usage
 
